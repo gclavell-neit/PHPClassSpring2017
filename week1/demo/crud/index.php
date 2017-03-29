@@ -19,16 +19,13 @@
         $phone = filter_input(INPUT_POST, 'phone');
         $phoneType = filter_input(INPUT_POST, 'phonetype');
 
-        $phoneRegex = '/^\(?([2-9]{1}[0-9]{2})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/';
-
-
-        $phones = getAllPhone();
+        
         $errors = [];
         $message = '';
 
         if (isPostRequest()) {
 
-            if ( !preg_match($phoneRegex, $phone) ) {
+            if ( !phoneIsValid($phone) ) {
                 $errors[] = 'Sorry Phone is not valid';
             }
             
@@ -49,6 +46,7 @@
         }
 
 
+        $phones = getAllPhone();
         include './templates/errors.html.php';
         include './templates/messages.html.php';
         include './templates/phone-form.html.php';

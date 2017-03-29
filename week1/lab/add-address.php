@@ -14,6 +14,7 @@ and open the template in the editor.
         require_once './models/dbconnect.php';
         require_once './models/util.php';
         require_once './models/addressCRUD.php';
+        require_once './models/validation.php';
         
         $fullname = filter_input(INPUT_POST, 'fullname');
         $email = filter_input(INPUT_POST, 'email');
@@ -25,16 +26,51 @@ and open the template in the editor.
         
         $errors = [];
         $message = '';
+        $states = getStates();
 
         if (isPostRequest()) {
             
             if(empty($fullname)){
                 $errors[] = 'Full name is required';
             }
+            if ( !isEmailValid($email) ){
+                 $errors[] = 'Email is not valid';
+            }
+            if(empty($addressline1)){
+                $errors[] = 'Address is required';
+            }
+            if(empty($city)){
+                $errors[] = 'City is required';
+            }
+            if(empty($state)){
+                $errors[] = 'State is required';
+            }
+            if(!isZipValid($zip)){
+                $errors[] = 'Zipcode must be 5 numbers';
+            }
+            if(!isDateValid($birthday)){
+                $errors[] = 'Birthday is not valid';
+            }
+            if(count($errors) === 0){
+                if(createAddress($fullname, $email, $addressline1, $city, $state, $zip, $birthday)){
+                    $message = 'Address Added';
+                    $fullname = '';
+                    $email = '';
+                    $addressline1 = '';
+                    $city = '';
+                    $state = '';
+                    $zip = '';
+                    $birthday = '';
+                }else{
+                    $errors[] = 'Could not Add to the database';
+                }
+            }
             
         }
         
         include './templates/add-address.html.php';
+        include './templates/errors.html.php';
+        include './templates/messages.html.php';
         
         ?>
     </body>
