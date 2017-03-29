@@ -9,6 +9,11 @@ function isPostRequest() {
     return ( filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST' );
 }
 
+/**
+ * 
+ * A method to retrieve an array containing states
+ * @return array
+ */
 function getStates(){
     
    return array(
