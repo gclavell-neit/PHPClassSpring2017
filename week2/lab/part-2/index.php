@@ -7,9 +7,9 @@
     </head>
     <body>
         <?php
-        include './models/dbconnect.php';
-        include './models/addressCRUD.php';
-        $addresses = readAllAddresses();
+        require_once './autoload.php';
+        $db = new DBAddress();
+        $addresses = $db->getAllAddresses();
         
         include './templates/view-address.html.php';
         ?>

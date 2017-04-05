@@ -12,10 +12,11 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        require_once './models/dbconnect.php';
-        require_once './models/util.php';
-        require_once './models/addressCRUD.php';
-        require_once './models/validation.php';
+        require_once './autoload.php';
+        
+        $db = new DBAddress();
+        $validtor = new Validator();
+        $util = new Util();
         
         $fullname = filter_input(INPUT_POST, 'fullname');
         $email = filter_input(INPUT_POST, 'email');
@@ -27,14 +28,14 @@ and open the template in the editor.
         
         $errors = [];
         $message = '';
-        $states = getStates();
+        $states = $util->getStates();
 
-        if (isPostRequest()) {
+        if ($util->isPostRequest()) {
             
             if(empty($fullname)){
                 $errors[] = 'Full name is required';
             }
-            if ( !isEmailValid($email) ){
+            if ( !$validtor->isEmailValid($email) ){
                  $errors[] = 'Email is not valid';
             }
             if(empty($addressline1)){
@@ -46,14 +47,14 @@ and open the template in the editor.
             if(empty($state)){
                 $errors[] = 'State is required';
             }
-            if(!isZipValid($zip)){
+            if(!$validtor->isZipValid($zip)){
                 $errors[] = 'Zipcode must be 5 numbers';
             }
-            if(!isDateValid($birthday)){
+            if(!$validtor->isDateValid($birthday)){
                 $errors[] = 'Birthday is not valid';
             }
             if(count($errors) === 0){
-                if(createAddress($fullname, $email, $addressline1, $city, $state, $zip, $birthday)){
+                if($db->createAddress($fullname, $email, $addressline1, $city, $state, $zip, $birthday)){
                     $message = 'Address Added';
                     $fullname = '';
                     $email = '';

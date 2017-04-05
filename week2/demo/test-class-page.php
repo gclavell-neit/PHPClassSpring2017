@@ -14,7 +14,7 @@
            
             
             echo $test->getTest();
-            
+            //this will fail and show an error becuase it's passing a boolean, prohibited by the setTest method
             $test->setTest(true);
             
              echo $test->getTest();
