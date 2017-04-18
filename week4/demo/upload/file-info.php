@@ -7,7 +7,7 @@
     <body>
         <?php
         /* ****************UPDATE FILE**************** */        
-        $file = '.'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'img_8c2ce4918b4a22324885fc1ee7a5c3f0866b09dc.jpg';
+        $file = '.'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'img_1416ef93320841fd0da7533f6cb827599512c928.jpg';
         
         //http://php.net/manual/en/fileinfo.constants.php
         $finfo = new finfo(FILEINFO_MIME_TYPE);
@@ -20,6 +20,7 @@
         
         /*
          * To delete a file use unlink
+         * unlink($file) - But once it's gone, it's gone. Use carefully
          */
         
         
