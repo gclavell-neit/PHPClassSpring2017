@@ -17,7 +17,13 @@ try {
     $id = $restServer->getId();
     $serverData = $restServer->getServerData();
     
-       
+    $resourceUCName = ucfirst($resource); 
+    $resourceClassName = $resourceUCName . 'Resource';
+    try{
+        $resourceData = new $resourceClassName();
+    } catch (InvalidArgumentException $e) {
+        throw new InvalidArgumentException($resourceUCName . ' Resource Not Found');   
+    }
     /* 
      * You can add resoruces that will be handled by the server 
      * 
@@ -28,9 +34,8 @@ try {
      * But in this example we will just code it out.
      * 
      */
-    if ( 'address' === $resource ) {
+    
         
-        $resourceData = new AddressResource();
         
         if ( 'GET' === $verb ) {
             
@@ -50,10 +55,10 @@ try {
             
 
             if ($resourceData->post($serverData)) {
-                $restServer->setMessage('Address Added');
+                $restServer->setMessage($resourceUCName . ' Added');
                 $restServer->setStatus(201);
             } else {
-                throw new Exception('Address could not be added');
+                throw new Exception($resourceUCName . ' could not be added');
             }
         
         }
@@ -62,17 +67,11 @@ try {
         if ( 'PUT' === $verb ) {
             
             if ( NULL === $id ) {
-                throw new InvalidArgumentException('Address ID ' . $id . ' was not found');
+                throw new InvalidArgumentException($resourceUCName . ' ID ' . $id . ' was not found');
             }
             
         }
-        
-    } else {
-        throw new InvalidArgumentException($resource . ' Resource Not Found');
-        
-    }
-   
-    
+          
     /* 400 exeception means user sent something wrong */
 } catch (InvalidArgumentException $e) {
     $restServer->setStatus(400);
