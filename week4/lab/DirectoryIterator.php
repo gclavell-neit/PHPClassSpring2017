@@ -16,17 +16,16 @@
         $directory = new DirectoryIterator($folder);
            
         ?>
-        <form>
-        <ol>
+
         <?php foreach ($directory as $fileInfo) : ?>        
             <?php if ( $fileInfo->isFile() ) : ?>
-                <li>
-                    <span><h2><?php echo $fileInfo->getFilename(); ?></h2></span> <input type="button" value = "View" onclick = "window.location.href='http://localhost/PHPClassSpring2017/week4/lab/readOne.php?file=<?php echo $fileInfo->getFilename()?>'"/><input type="button" value = "Delete" onclick = <?php echo unlink('uploads/'.$fileInfo->getFilename())?>"/>
-                </li>
+                <h2><?php echo $fileInfo->getFilename(); ?></h2>
+                <p>uploaded on <?php echo date("l F j, Y, g:i a", $fileInfo->getMTime()); ?></p>
+                <p>This file is <?php echo $fileInfo->getSize(); ?> byte's</p>
+                <img src="<?php echo $fileInfo->getPathname(); ?>" />
             <?php endif; ?>
         <?php endforeach; ?>
-        </ol>
-        </form>
+        
 
     </body>
 </html>
