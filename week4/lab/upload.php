@@ -94,7 +94,7 @@
 
         <?php if ( isset($fileName) ) : ?>
             <h2><?php echo $fileName; ?> is uploaded successfully.</h2>
-            <a href="DirectoryIterator_viewAll.php">View All</a>
+            <a href="viewAll.php">View All</a>
         <?php else: ?>
             <p><?php echo $error; ?></p>
         <?php endif; ?>

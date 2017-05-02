@@ -13,6 +13,6 @@ and open the template in the editor.
         <?php
         include './views/upload-form.php';
         ?>
-        <a href="DirectoryIterator_viewAll.php">View All Files</a>
+        <a href="viewAll.php">View All Files</a>
     </body>
 </html>

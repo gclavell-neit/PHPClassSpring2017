@@ -16,6 +16,6 @@ and open the template in the editor.
         unlink("uploads/".$name);
         ?>
         <h2><?php echo $name?> has been deleted</h2>
-        <a href="DirectoryIterator_viewAll.php">View All</a>
+        <a href="viewAll.php">View All</a>
     </body>
 </html>
