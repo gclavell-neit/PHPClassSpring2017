@@ -21,12 +21,13 @@
         <?php foreach ($directory as $fileInfo) : ?>        
             <?php if ( $fileInfo->isFile() ) : ?>
                 <li>
-                    <span><h2><?php echo $fileInfo->getFilename(); ?></h2></span> <input type="button" value = "View" onclick = "window.location.href='http://localhost/PHPClassSpring2017/week4/lab/readOne.php?file=<?php echo $fileInfo->getFilename()?>'"/><input type="button" value = "Delete" onclick = <?php echo unlink('uploads/'.$fileInfo->getFilename())?>"/>
+                    <span><h2><?php echo $fileInfo->getFilename(); ?></h2></span> <input type="button" value = "View" onclick = "window.location.href='http://localhost/PHPClassSpring2017/week4/lab/readOne.php?file=<?php echo $fileInfo->getFilename()?>'"/><input type="button" value = "Delete" onclick = "window.location.href='http://localhost/PHPClassSpring2017/week4/lab/delete.php?file=<?php echo $fileInfo->getFilename()?>'"/>
                 </li>
             <?php endif; ?>
         <?php endforeach; ?>
         </ol>
         </form>
+        <a href="index.php">Upload Page</a>
 
     </body>
 </html>

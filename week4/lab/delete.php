@@ -11,8 +11,11 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        include './views/upload-form.php';
+        $name = filter_input(INPUT_GET,'file');
+        
+        unlink("uploads/".$name);
         ?>
-        <a href="DirectoryIterator_viewAll.php">View All Files</a>
+        <h2><?php echo $name?> has been deleted</h2>
+        <a href="DirectoryIterator_viewAll.php">View All</a>
     </body>
 </html>

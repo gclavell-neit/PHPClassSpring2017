@@ -11,8 +11,9 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        $name = $_GET['file'];
-        echo $name;
+        
+        $name = filter_input(INPUT_GET,'file');
+     
         ?>
         
         <?php
