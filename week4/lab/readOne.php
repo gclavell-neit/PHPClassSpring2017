@@ -10,42 +10,27 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <?php
-        
-        $name = filter_input(INPUT_GET,'file');
-     
-        ?>
         
         <?php
-        /* ****************UPDATE FILE**************** */        
+        
+        $name = filter_input(INPUT_GET,'file');      
         $file = '.'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.$name;
         
         //http://php.net/manual/en/fileinfo.constants.php
         $finfo = new finfo(FILEINFO_MIME_TYPE);
         $type = $finfo->file($file);
         
-        var_dump($type, '<br /><br />');
-        
-        //http://php.net/manual/en/function.filesize.php
-        var_dump(filesize($file), '<br /><br />');
-        
-        /*
-         * To delete a file use unlink
-         * unlink($file) - But once it's gone, it's gone. Use carefully
-         */
-        
-        
-        // http://php.net/manual/en/class.splfileinfo.php
-        $finfo = new SplFileInfo($file);
-        
-        if ( $finfo->isFile() ) {
-            var_dump($finfo->getRealPath(), '<br /><br />');
-            var_dump($finfo->getFilename(), '<br /><br />');
-            var_dump(date("l F j, Y, g:i a", $finfo->getMTime()), '<br /><br />');
-            var_dump($finfo->getSize(), '<br /><br />');
-            var_dump($finfo->getPathname(), '<br /><br />');
-            
-        }
         ?>
+        
+        <h2><?php echo("Name: ".$name.'<br /><br />'); ?></h2>
+        <h2><?php echo("Type: ".$type.'<br /><br />') ?> </h2>
+        <h2><?php echo("Size: ".filesize($file).'<br /><br />'); ?></h2>
+        <?php $finfo = new SplFileInfo($file); $date = date("l F j, Y, g:i a", $finfo->getMTime());?>
+        <h2><?php echo("Upload Date: ".$date.'<br /><br />'); ?></h2>
+        
+        
+        <input type="button" value = "Delete" onclick = "window.location.href='http://localhost/PHPClassSpring2017/week4/lab/delete.php?file=<?php echo $name?>'"/>
+        <a href="viewAll.php">View All</a>
+        
     </body>
 </html>
