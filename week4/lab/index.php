@@ -8,11 +8,14 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+        
     </head>
     <body>
+        
         <?php
         include './views/upload-form.php';
         ?>
+        
         <a href="viewAll.php">View All Files</a>
     </body>
 </html>
