@@ -66,7 +66,7 @@ try {
         
         if ( 'PUT' === $verb ) {
             
-            if ($resourceData->update($serverData)) {
+            if ($resourceData->update($serverData, $id)) {
                 $restServer->setMessage($resourceUCName . ' Updated');
                 $restServer->setStatus(201);
             } else {

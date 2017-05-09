@@ -32,8 +32,6 @@
         <br />
         <br />
         Data(optional):<br />   
-        id <input type="text" name="id" value="" />
-        <br />
         corp <input type="text" name="corp" value="" />
         <br />
         incorp_dt <input type="date" name="incorp_dt" value="" />
@@ -61,7 +59,6 @@
                 var verb = verbfield.options[verbfield.selectedIndex].value;
                 var resource = document.querySelector('input[name="resource"]').value;
                 var data = {
-                    'id': document.querySelector('input[name="id"]').value,
                     'corp': document.querySelector('input[name="corp"]').value,
                     'incorp_dt': document.querySelector('input[name="incorp_dt"]').value,
                     'email': document.querySelector('input[name="email"]').value,
