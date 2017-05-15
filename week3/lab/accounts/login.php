@@ -33,7 +33,7 @@ and open the template in the editor.
             $login_info = $accounts->login($email, $password);
             if($login_info>0){
                 $_SESSION['user_id'] = $login_info;
-                $_SESSION['email'] = $email;
+                //$_SESSION['email'] = $email;
                 $util->redirect("admin.php");
             }else{
                 $errors[] = 'Sign in not successful';

@@ -26,20 +26,27 @@ and open the template in the editor.
         
         if($util->isPostRequest()){
             
+            $valid = true;
             if ( !$validator->isEmailValid($email) ){
                  $errors[] = 'Email is not valid';
+                 $valid = false;
             }
             if(empty($password)){
                 $errors[] = 'Password must be entered';
+                $valid = false;
             }
             if ( $accounts->getEmail($email)>0 ){
                  $errors[] = 'Email already associated with an account';
-            }elseif
-                ($accounts->signup($email, $password)){
-                    $message = 'Signup Successful! Please log in';
+                 $valid = false;
             }
-            else{
-                $errors[] = 'Sign up not successful';
+            if($valid){
+                if
+                    ($accounts->signup($email, $password)){
+                        $message = 'Signup Successful! Please log in';
+                }
+                else{
+                    $errors[] = 'Sign up not successful';
+                }
             }
         }
         include './views/signup.html.php';

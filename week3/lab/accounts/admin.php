@@ -20,6 +20,7 @@ and open the template in the editor.
         $errors = [];
         $message = '';
         $util = new Util();
+        $accounts = new Accounts();
        
         include './views/session_access.html.php';
         include './views/messages.html.php';    
@@ -30,7 +31,7 @@ and open the template in the editor.
         }
         ?>
         <h5>User ID: <?php echo $_SESSION['user_id']?></h5>
-        <h5>Email: <?php echo $_SESSION['email']?></h5>
+        <h5>Email: <?php echo $accounts->getEmailById($_SESSION['user_id'])?></h5>
         <?php include './views/logout.html.php'; ?>  
 
     </div>

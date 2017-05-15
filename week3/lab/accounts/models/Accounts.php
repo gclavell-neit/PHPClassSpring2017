@@ -65,4 +65,17 @@ class Accounts extends DB {
         return 0;
     }
     
+    public function getEmailById($user_id){
+        $stmt = $this->getDB()->prepare("SELECT email FROM users WHERE user_id = :user_id");
+        $binds = array(
+        ":user_id" => $user_id
+        );
+        if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);
+                return $results['email'];
+         }
+    
+        return 0;
+    }
+    
 }

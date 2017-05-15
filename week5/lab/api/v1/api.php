@@ -74,6 +74,21 @@ try {
             }
             
         }
+        
+        if ( 'DELETE' === $verb ) {
+            
+            if ( $resourceData->delete($id) ) {
+                
+               $restServer->setMessage($resourceUCName . ' Deleted');
+                $restServer->setStatus(201);                         
+                
+            } else {
+                
+                throw new Exception($resourceUCName . ' could not be deleted');
+                
+            }            
+            
+        }
           
     /* 400 exeception means user sent something wrong */
 } catch (InvalidArgumentException $e) {
