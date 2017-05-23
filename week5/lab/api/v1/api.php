@@ -53,7 +53,7 @@ try {
                 
         if ( 'POST' === $verb ) {
             
-
+            
             if ($resourceData->post($serverData)) {
                 $restServer->setMessage($resourceUCName . ' Added');
                 $restServer->setStatus(201);
@@ -66,6 +66,9 @@ try {
         
         if ( 'PUT' === $verb ) {
             
+            if ( NULL === $id ) {
+                throw new InvalidArgumentException($resourceUCName .' ID ' . $id . ' was not found');
+            }
             if ($resourceData->update($serverData, $id)) {
                 $restServer->setMessage($resourceUCName . ' Updated');
                 $restServer->setStatus(201);
@@ -77,6 +80,9 @@ try {
         
         if ( 'DELETE' === $verb ) {
             
+            if ( NULL === $id ) {
+                throw new InvalidArgumentException($resourceUCName .' ID ' . $id . ' was not found');
+            }
             if ( $resourceData->delete($id) ) {
                 
                $restServer->setMessage($resourceUCName . ' Deleted');
