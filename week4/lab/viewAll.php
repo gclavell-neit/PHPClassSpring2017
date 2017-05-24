@@ -25,7 +25,7 @@
             <?php if ( $fileInfo->isFile() ) : ?>
                 <h2>
                 <li>
-                    <span><h3><?php echo $fileInfo->getFilename(); ?></h3><h4></span> <input type="button" value = "View" onclick = "window.location.href='http://localhost/PHPClassSpring2017/week4/lab/readOne.php?file=<?php echo $fileInfo->getFilename()?>'"/><input type="button" value = "Delete" onclick = "window.location.href='http://localhost/PHPClassSpring2017/week4/lab/delete.php?file=<?php echo $fileInfo->getFilename()?>'"/></h4>
+                    <span><?php echo $fileInfo->getFilename(); ?></span> <a href='./readOne.php?file=<?php echo $fileInfo->getFilename()?>'>View</a> <a href='./delete.php?file=<?php echo $fileInfo->getFilename()?>'>Delete</a>
                 </li>
                 </h2>
             <?php endif; ?>
